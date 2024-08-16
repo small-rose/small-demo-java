@@ -4,9 +4,6 @@ import com.xiaocai.demo.java.concurrent.distsibution.annotaion.DistributeConcurr
 import com.xiaocai.demo.java.concurrent.distsibution.lock.DistributedLockManager;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,11 +17,11 @@ import java.util.concurrent.TimeUnit;
  **/
 
 
-@Component
-@Aspect
+//@Component
+//@Aspect
 public class DistributionConcurrencyLimitAspect {
 
-    @Autowired
+    //@Autowired
     private DistributedLockManager lockManager;
 
     @Around("@annotation(distributeConcurrencyLimit)")

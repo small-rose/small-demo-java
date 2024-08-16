@@ -3,11 +3,19 @@ package com.xiaocai.demo.java.stream;
 import com.xiaocai.demo.java.stream.vo.IndexExpressions;
 import org.junit.jupiter.api.Test;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @Project : springboot-demo
@@ -20,6 +28,59 @@ import java.util.stream.Collectors;
 
 public class StreamDemo {
 
+    @Test
+    public void streamCreate(){
+        // 从数组构建 Stream 流
+        String[] nums = {"1", "2", "3", "4"};
+        Stream<String> numStream = Arrays.stream(nums);
+
+        // 从集合构建 Stream 流
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+        Stream<Integer> numberStream = numbers.stream();
+
+        // 从多个参数构建 Stream 流
+        Stream<String> colorStream = Stream.of("red", "green", "blue");
+
+        // 从一个数组构建 Stream 流
+        Double[] scores = {98.5, 85.4, 76.3, 92.1};
+        Stream<Double> scoreStream = Stream.of(scores);
+
+
+        // 从文件构建 Stream 流
+        Path path = Paths.get("demo_data.txt");
+        try (Stream<String> lineStream = Files.lines(path)) {
+            // 对每一行进行操作
+            lineStream.forEach(System.out::println);
+
+            // 简写
+            Files.lines(path).forEach(System.out::println);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        // 从 I/O 资源构建 Stream 流
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            // 从标准输入读取每一行
+            Stream<String> inputStream = reader.lines();
+            // 对每一行进行操作
+            inputStream.forEach(System.out::println);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // 使用 generate() 方法构建 Stream 流, 生成一个随机数的 Stream 流
+        Stream<Double> randomStream = Stream.generate(Math::random);
+        // 限制 Stream 流的大小为 10
+        randomStream.limit(10).forEach(System.out::println);
+
+        // 使用 iterate() 方法构建 Stream 流
+        // 生成一个斐波那契数列的 Stream 流
+        Stream<Integer> fibonacciStream = Stream.iterate(new int[]{0, 1}, t -> new int[]{t[1], t[0] + t[1]})
+                .map(t -> t[0]);
+        // 限制 Stream 流的大小为 10
+        fibonacciStream.limit(10).forEach(System.out::println);
+    }
 
     @Test
     public void limit(){

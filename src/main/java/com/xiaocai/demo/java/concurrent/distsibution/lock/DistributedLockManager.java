@@ -2,8 +2,6 @@ package com.xiaocai.demo.java.concurrent.distsibution.lock;
 
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -17,12 +15,12 @@ import java.util.concurrent.TimeUnit;
  * @Version ： 1.0
  **/
 
-@Component
+//@Component
 public class DistributedLockManager {
 
     private final ConcurrentHashMap<String, RLock> locks = new ConcurrentHashMap<>();
 
-    @Autowired
+    //@Autowired
     private RedissonClient redissonClient;
 
     public boolean tryLock(String methodName, int limit, long timeout, TimeUnit timeUnit) throws InterruptedException {

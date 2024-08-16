@@ -24,18 +24,18 @@ public class BatchIdService {
 
     private int batchSize = 10 ;
 
-    public Integer getNextId(){
+    public synchronized Integer getNextId(){
         checkList();
         return getId();
     }
 
-    private synchronized  Integer getId(){
+    private Integer getId(){
         Integer id = batchIds.get(currentIndex.get());
         currentIndex.getAndIncrement();
         return id;
     }
 
-    private synchronized  void checkList(){
+    private  void checkList(){
         if (batchIds.size()<=0 || currentIndex.getAndDecrement() >= batchIds.size()){
             batchIds.clear();
             batchIds.addAll(loadIds(batchSize));

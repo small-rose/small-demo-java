@@ -1,13 +1,12 @@
 package com.xiaocai.demo.java.utils;
 
-import com.alibaba.druid.pool.DruidDataSource;
-import lombok.Data;
+import com.xiaocai.demo.java.codegen.config.DbConfig;
 
 import javax.sql.DataSource;
 
 /**
  * @Project : small-demo-java
- * @Author : zhangzongyuan
+ * @Author : zhangxiaocai
  * @Description : [ DataSourceUtils ] 说明：无
  * @Function :  功能说明：无
  * @Date ：2023/12/15 10:39
@@ -15,17 +14,11 @@ import javax.sql.DataSource;
  **/
 public class DataSourceUtils {
 
-    @Data
-    public static class DbConfig{
-        private String driverName;
-        private String url;
-        private String userName;
-        private String password;
-    }
+
 
 
     public static DataSource createDataSource(DbConfig config) {
-        DruidDataSource dataSource = new DruidDataSource();
+     /*   DruidDataSource dataSource = new DruidDataSource();
 
         // 设置数据源配置
         dataSource.setDriverClassName(config.getDriverName());
@@ -55,7 +48,7 @@ public class DataSourceUtils {
         dataSource.setTimeBetweenEvictionRunsMillis(60000);
         dataSource.setMinEvictableIdleTimeMillis(300000);
         dataSource.setMaxEvictableIdleTimeMillis(1800000);
-
-        return dataSource;
+*/
+        return  null;
     }
 }

@@ -18,8 +18,10 @@ public class Base64Tools {
 
 
     public static void main(String[] args) {
-        String inputFile = "C:\\Users\\SHFND-NOTE200001\\Downloads\\175622-xing_zhi-yi_shu-ye_ti-liu_ti-wu_ye-2560x1440.jpg"; // 替换为要转换的文件路径
-        String outputFile = "C:\\Users\\SHFND-NOTE200001\\Downloads\\175622.txt"; // 替换为输出的文本文件路径
+        //String inputFile = "C:\\Users\\SHFND-NOTE200001\\Downloads\\ClickShow1_4_1.zip"; // 替换为要转换的文件路径
+        //String outputFile = "C:\\Users\\SHFND-NOTE200001\\Downloads\\Click.txt"; // 替换为输出的文本文件路径
+        String inputFile = "D:\\idea-Work\\zzy-new\\db-demo.zip"; // 替换为要转换的文件路径
+        String outputFile = "D:\\idea-Work\\zzy-new\\db-demo.zip.txt"; // 替换为输出的文本文件路径
 
         // Base64 编码
         try {
@@ -32,8 +34,8 @@ public class Base64Tools {
         }
 
         // Base64 解码
-        String base64InputFile = "C:\\Users\\SHFND-NOTE200001\\Downloads\\175622.txt"; // 替换为包含 Base64 文本的文件路径
-        String binaryOutputFile = "C:\\Users\\SHFND-NOTE200001\\Downloads\\175622.jpg"; // 替换为输出的二进制文件路径
+        String base64InputFile = "C:\\Users\\SHFND-NOTE200001\\Downloads\\Click.txt"; // 替换为包含 Base64 文本的文件路径
+        String binaryOutputFile = "C:\\Users\\SHFND-NOTE200001\\Downloads\\ClickShow1_4_1.base64.zip"; // 替换为输出的二进制文件路径
 
         try {
             String base64String = readFileToString(base64InputFile);
@@ -70,17 +72,17 @@ public class Base64Tools {
     }
 
 
-    private static void writeStringToFile(String filePath, String content) throws IOException {
+    public static void writeStringToFile(String filePath, String content) throws IOException {
         byte[] contentBytes = content.getBytes(StandardCharsets.UTF_8);
         Files.write(Paths.get(filePath), contentBytes);
     }
 
-    private static String readFileToString(String filePath) throws IOException {
+    public static String readFileToString(String filePath) throws IOException {
         byte[] fileBytes = Files.readAllBytes(Paths.get(filePath));
         return new String(fileBytes, StandardCharsets.UTF_8);
     }
 
-    private static void writeBytesToFile(String filePath, byte[] contentBytes) throws IOException {
+    public static void writeBytesToFile(String filePath, byte[] contentBytes) throws IOException {
         Files.write(Paths.get(filePath), contentBytes);
     }
 }
