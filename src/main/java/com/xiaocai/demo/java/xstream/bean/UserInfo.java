@@ -1,6 +1,8 @@
 package com.xiaocai.demo.java.xstream.bean;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamConverter;
+import com.xiaocai.demo.java.xstream.converter.UserInfoConverter;
 import lombok.Data;
 
 /**
@@ -13,6 +15,7 @@ import lombok.Data;
  **/
 
 @Data
+@XStreamConverter(UserInfoConverter.class)
 @XStreamAlias("userInfo")
 public class UserInfo {
 

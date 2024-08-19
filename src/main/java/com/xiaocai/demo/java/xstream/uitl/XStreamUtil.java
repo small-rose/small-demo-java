@@ -1,6 +1,7 @@
 package com.xiaocai.demo.java.xstream.uitl;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.io.naming.NoNameCoder;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import com.xiaocai.demo.java.xstream.bean.MsgBody;
@@ -30,19 +31,22 @@ public class XStreamUtil {
         xml2ObjectMap.put("body", MsgBody.class);
     }
 
-    private static XStream getXStream(){
+    private static XStream getXStream(Converter[] converter){
         XStream xstream = new XStream(new DomDriver("utf-8", new NoNameCoder()));
         xstream.autodetectAnnotations(true);
+        for (Converter converter1 : converter) {
+            xstream.registerConverter(converter1);
+        }
         return xstream ;
     }
 
-    public static String toXML(Object msgObj){
-        XStream xStream = getXStream();
+    public static String toXML(Object msgObj, Converter... converter){
+        XStream xStream = getXStream(converter);
         return xStream.toXML(msgObj);
     }
 
-    public static Object toObject(String xml){
-        XStream xStream = getXStream();
+    public static Object toObject(String xml, Converter... converter){
+        XStream xStream = getXStream(converter);
         Map<String, Class> mapper = getXml2ObjectMap();
         Iterator<String> iterator = mapper.keySet().iterator();
         while (iterator.hasNext()){

@@ -17,6 +17,10 @@ public class Person {
     private String name;
     private int age;
     private String lockStatus;
+
+    public Person() {
+    }
+
     public Person(String name, int age, String lockStatus)
     {
         this.name=name;

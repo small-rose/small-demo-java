@@ -1,7 +1,6 @@
 package com.xiaocai.demo.java.xstream.bean;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,11 +13,23 @@ import lombok.NoArgsConstructor;
  * @Version ： 1.0
  **/
 
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 @Data
 @XStreamAlias("body")
 public class MsgBody {
 
+    //@XStreamImplicit(itemFieldName = "dataList")
+    //@XStreamImplicit(itemFieldName = "dataList")
+    //private List<UserInfo> objectList = new ArrayList<UserInfo>();
+
     private Object object ;
+
+ /*   public MsgBody(List<UserInfo> objectList) {
+        this.objectList = objectList;
+    }
+*/
+    public MsgBody(Object object) {
+        this.object = object;
+    }
 }
